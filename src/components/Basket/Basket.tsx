@@ -6,7 +6,7 @@ type PropsType={
 const Basket = (props:PropsType) => {
     return (
         <div>
-         <p><b>Total price:</b>{props.orderPrice}</p>
+         <p><b>Total price: </b>{props.orderPrice}</p>
             <p></p>
         </div>
     );

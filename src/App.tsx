@@ -8,8 +8,8 @@ function App() {
 
     const [books, setBooks] = useState<BookPropsType[]>([])
     const [orderBy, setOrderBy] = useState(false)
-    const [totalOrders, setTotalOrders]=useState<BookPropsType[]>([])
-    const [orderPrice, setOrderPrice]=useState(0)
+    const [totalOrders, setTotalOrders] = useState<BookPropsType[]>([])
+    const [orderPrice, setOrderPrice] = useState(0)
 
     useEffect(() => {
         try {
@@ -34,22 +34,21 @@ function App() {
     }
 
     const sortBooks = () => {
-        const copyBooks=[...books]
-        if(orderBy){
+        const copyBooks = [...books]
+        if (orderBy) {
             const sortedUpBooks = copyBooks.sort((a: BookPropsType, b: BookPropsType) => a.price > b.price ? 1 : -1)
             setBooks(sortedUpBooks)
             setOrderBy(!orderBy)
-        }
-      else {
+        } else {
             const sortedDownBooks = copyBooks.sort((a: BookPropsType, b: BookPropsType) => a.price > b.price ? -1 : 1)
             setBooks(sortedDownBooks)
             setOrderBy(!orderBy)
         }
     }
 
-    const totalPrice=(book:BookPropsType)=> {
-        setTotalOrders([...totalOrders,book])
-        let orderSum=totalOrders.reduce((sum, current)=> sum+current.price, 0)
+    const totalPrice = (book: BookPropsType) => {
+        setTotalOrders([...totalOrders, book])
+        let orderSum = totalOrders.reduce((sum, current) => sum + current.price, 0)
         setOrderPrice(orderSum)
     }
 
@@ -78,7 +77,7 @@ export type BookPropsType = {
     id: number
     name: string
     price: number
-    category?: string
+    category?: CategoryType
 }
-
+export type CategoryType = "animals" | "tourism" | "parfum" | "music" | "food"
 export default App;
