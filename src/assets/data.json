@@ -10,7 +10,7 @@
       "id": 2,
       "name": "Paris and clothes",
       "price": 345,
-      "category": "tourizm"
+      "category": "tourism"
     },
     {
       "id": 3,
@@ -32,9 +32,9 @@
     },
     {
       "id": 6,
-      "name": "Italy and tourizm",
+      "name": "Italy and tourism",
       "price": 156,
-      "category": "tourizm"
+      "category": "tourism"
     },
     {
       "id": 7,
