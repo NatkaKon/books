@@ -2,11 +2,14 @@ import React, {useEffect, useState} from 'react';
 import s from './App.module.sass';
 import {ListBook} from "./components/ListBook/ListBook";
 import {BookFilter} from "./components/BookFilter/BookFilter";
+import Basket from "./components/Basket/Basket";
 
 function App() {
 
     const [books, setBooks] = useState<BookPropsType[]>([])
     const [orderBy, setOrderBy] = useState(false)
+    const [totalOrders, setTotalOrders]=useState<BookPropsType[]>([])
+    const [orderPrice, setOrderPrice]=useState(0)
 
     useEffect(() => {
         try {
@@ -44,13 +47,23 @@ function App() {
         }
     }
 
+    const totalPrice=(book:BookPropsType)=> {
+        setTotalOrders([...totalOrders,book])
+        let orderSum=totalOrders.reduce((sum, current)=> sum+current.price, 0)
+        setOrderPrice(orderSum)
+    }
+
     return (
         <div className={s.wrapper}>
+            <h2>Books</h2>
             <div>
                 <BookFilter orderBy={orderBy} filterBooks={filterBooks} sortBooks={sortBooks}/>
             </div>
             <div>
-                {books ? <ListBook books={books}/> : 'no books'}
+                {books ? <ListBook books={books} totalPrice={totalPrice}/> : 'no books'}
+            </div>
+            <div>
+                <Basket orderPrice={orderPrice}/>
             </div>
         </div>
     );
